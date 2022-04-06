@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, Flatlist } from 'react-native';
+import { Text, View, Flatlist } from 'react-native';
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import HomePage from "./screens/HomePage";
@@ -23,11 +23,3 @@ export default function App() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

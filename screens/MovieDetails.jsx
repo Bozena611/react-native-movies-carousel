@@ -1,11 +1,18 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 
-const MovieDetails = () => {
+const MovieDetails = ({row, navigation, route}) => {
+	console.log("row", row)
+	const id = route.params.id;
 	return (
 		<View>
+			<TouchableOpacity>
+		    <Text
+		    style={{ color: 'blue' }}
+		    onPress={() => navigation.goBack()}>Back to List</Text>
+				</TouchableOpacity>
 			<Text>
-				MovieDetails
+				MovieDetails for {id}
 			</Text>
 		</View>
 		)
