@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { StyleSheet, View, SafeAreaView, Image, FlatList, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, ScrollView, View, SafeAreaView, Image, FlatList, Text, TouchableOpacity } from "react-native";
 import FocusedStatusBar from "../components/FocusedStatusBar";
 
 
@@ -31,19 +31,31 @@ const HomePage = () => {
       let movies = [];
       if(item.items) {
         movies = item.items.map((row, i) => {
+        	let name=row.title;
+        	let year=row.year;
+        	let duration=row.duration;
+        	let poster=row.posterUrl;
+        	let director=row.director;
+        	let actors=row.actors;
+        	let plot=row.plot;
+
           return (
-          	<TouchableOpacity key={i} onPress={() => navigation.navigate("MovieDetails", { row })}>
-          	<View>
-          		<Image
-          			source={{uri: row.posterUrl}}
-          			style={{
-			            resizeMode: "center",
-			            height: 100,
-			            width: 200
-			          }}
-          		/>
-          		<Text>{row.title}</Text>
-          	</View>
+          	<TouchableOpacity key={i} onPress={() => navigation.navigate("MovieDetails", { name, year, duration, poster, director, actors, plot })}>
+	          	<View styles={{ width: '70%', height: 'auto', textAlign: 'center'}}>
+		          	<View>
+		          		<Image
+		          			source={{uri: row.posterUrl}}
+		          			style={{
+					            resizeMode: "center",
+					            height: 120,
+					            width: 150
+					          }}
+		          		/>
+		          	</View>
+	          		<View style={{textAlign: 'center'}}>
+	          			<Text style={styles.movieTitle}>{row.title}</Text>
+	          		</View>
+	          	</View>
           	</TouchableOpacity>
           )
         })
@@ -51,12 +63,16 @@ const HomePage = () => {
 
       return (
         <View>
-          <Text style={{ color: 'red', fontWeight: 'bold'}}>
+          <Text style={{ color: '#58A6FF', fontWeight: 'bold', padding: 20, fontSize: 20}}>
             {item.title}
           </Text>
-          <View style={styles.container}>
+          <ScrollView
+         		style={{ flex: 1 }}
+          	horizontal={true}
+  					showsHorizontalScrollIndicator={false}
+          >
          		{movies}
-         	</View>
+         	</ScrollView>
         </View>
       )
     }
@@ -66,21 +82,35 @@ const HomePage = () => {
 		 <SafeAreaView style={{ flex: 1 }}>
 	    <FocusedStatusBar />
 	    <FlatList
+	    	style={styles.flatlist}
 	    	data={carousels}
 	    	keyExtractor={(item, index) => index}
 	    	renderItem={renderItem}
-	    		/>
+	    />
 		</SafeAreaView>
 		);
 }
 
+
 const styles = StyleSheet.create({
-  container: {
+ /* container: {
     flex: 1,
     flexDirection: "column",
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
   },
+  */
+  flatlist: {
+  	flex: 1,
+  	paddingTop: 10,
+  },
+  movieTitle: {
+  	textAlign: 'center',
+  	width: '70%',
+  	color: '#E4E6EB',
+  }
 });
+
+
 
 export default HomePage;

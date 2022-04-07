@@ -13,6 +13,7 @@ export default function App() {
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
+          cardStyle: { backgroundColor: '#121212', flex: 1 }
         }}
         initialRouteName="HomePage"
       >
