@@ -9,9 +9,6 @@ const HomePage = () => {
 	const navigation = useNavigation();
 	const [carousels, setCarousels] = useState([]);
   const [isLoading, setLoading] = useState(true);
-  /*const [error, setError] = useState(null);*/
-   /* console.log("carousel array", carousels);*/
-
 
 /* Fetch data from source and store it in state*/
 
@@ -28,58 +25,65 @@ const HomePage = () => {
   }, []);
 
   const renderItem = ({item}) => {
-      let movies = [];
-      if(item.items) {
-        movies = item.items.map((row, i) => {
-        	let name=row.title;
-        	let year=row.year;
-        	let duration=row.duration;
-        	let poster=row.posterUrl;
-        	let director=row.director;
-        	let actors=row.actors;
-        	let plot=row.plot;
+    let movies = [];
 
-          return (
-          	<TouchableOpacity key={i} onPress={() => navigation.navigate("MovieDetails", { name, year, duration, poster, director, actors, plot })}>
-	          	<View styles={{ width: '70%', height: 'auto', textAlign: 'center'}}>
-		          	<View>
-		          		<Image
-		          			source={{uri: row.posterUrl}}
-		          			style={{
-					            resizeMode: "center",
-					            height: 120,
-					            width: 150
-					          }}
-		          		/>
-		          	</View>
-	          		<View style={{textAlign: 'center'}}>
-	          			<Text style={styles.movieTitle}>{row.title}</Text>
-	          		</View>
-	          	</View>
-          	</TouchableOpacity>
-          )
-        })
-      }
+    if (item.items) {
+      movies = item.items.map((row, i) => {
+      	let name=row.title;
+      	let year=row.year;
+      	let duration=row.duration;
+      	let poster=row.posterUrl;
+      	let director=row.director;
+      	let actors=row.actors;
+      	let plot=row.plot;
 
-      return (
-        <View>
+        return (
+        	<TouchableOpacity key={i} onPress={() => navigation.navigate("MovieDetails", { name, year, duration, poster, director, actors, plot })}>
+          	<View styles={{ width: '70%', height: 'auto' }}>
+          		<View>
+	          		<Image
+	          			source={{uri: row.posterUrl}}
+	          			style={{
+				            resizeMode: "center",
+				            height: 120,
+				            width: 150
+				          }}
+	          		/>
+          		</View>
+	         		<View>
+          			<Text style={styles.movieTitle}>{row.title}</Text>
+          		</View>
+          	</View>
+        	</TouchableOpacity>
+        )
+      })
+    }
+
+    return (
+      <View>
+      {isLoading ? <Text style={{color: '#E4E6EB'}}>Loading...</Text> :
+	      (<View>
           <Text style={{ color: '#58A6FF', fontWeight: 'bold', padding: 20, fontSize: 20}}>
             {item.title}
           </Text>
-          <ScrollView
-         		style={{ flex: 1 }}
-          	horizontal={true}
-  					showsHorizontalScrollIndicator={false}
-          >
-         		{movies}
-         	</ScrollView>
-        </View>
-      )
-    }
+          <View>
+	          <ScrollView
+	         		style={{ flex: 1 }}
+	          	horizontal={true}
+	  					showsHorizontalScrollIndicator={false}
+	          >
+	         		{movies}
+	         	</ScrollView>
+	        </View>
+	      </View>
+	      )}
+      </View>
+    )
+  }
 
 
 	return (
-		 <SafeAreaView style={{ flex: 1 }}>
+		<SafeAreaView style={{ flex: 1 }}>
 	    <FocusedStatusBar />
 	    <FlatList
 	    	style={styles.flatlist}
@@ -88,7 +92,7 @@ const HomePage = () => {
 	    	renderItem={renderItem}
 	    />
 		</SafeAreaView>
-		);
+	);
 }
 
 
@@ -106,8 +110,9 @@ const styles = StyleSheet.create({
   },
   movieTitle: {
   	textAlign: 'center',
-  	width: '70%',
   	color: '#E4E6EB',
+  	margin: 5,
+  	padding: 5,
   }
 });
 
