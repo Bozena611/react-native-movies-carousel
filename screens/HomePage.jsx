@@ -29,24 +29,25 @@ const HomePage = () => {
 
     if (item.items) {
       movies = item.items.map((row, i) => {
-      	let name=row.title;
-      	let year=row.year;
-      	let duration=row.duration;
-      	let poster=row.posterUrl;
-      	let director=row.director;
-      	let actors=row.actors;
-      	let plot=row.plot;
+      	let name = row.title;
+      	let year = row.year;
+      	let duration = row.duration;
+      	let poster = row.posterUrl;
+      	let director = row.director;
+      	let actors = row.actors;
+      	let plot = row.plot;
 
         return (
-        	<TouchableOpacity key={i} onPress={() => navigation.navigate("MovieDetails", { name, year, duration, poster, director, actors, plot })}>
+        	<TouchableOpacity key={i} style={{ flex: 1 }} onPress={() => navigation.navigate("MovieDetails", { name, year, duration, poster, director, actors, plot })}>
           	<View styles={{ width: '70%', height: 'auto' }}>
           		<View>
 	          		<Image
 	          			source={{uri: row.posterUrl}}
 	          			style={{
-				            resizeMode: "center",
+				            resizeMode: "contain",
 				            height: 120,
-				            width: 150
+				            width: 150,
+				            alignSelf: 'center',
 				          }}
 	          		/>
           		</View>
@@ -60,13 +61,12 @@ const HomePage = () => {
     }
 
     return (
-      <View>
-      {isLoading ? <Text style={{color: '#E4E6EB'}}>Loading...</Text> :
-	      (<View>
+      <View style={{ flex: 1, justifyContent: "space-evenly" }}>
+      	<View>
           <Text style={{ color: '#58A6FF', fontWeight: 'bold', padding: 20, fontSize: 20}}>
             {item.title}
           </Text>
-          <View>
+          <View style={{ flex: 1 }}>
 	          <ScrollView
 	         		style={{ flex: 1 }}
 	          	horizontal={true}
@@ -76,7 +76,6 @@ const HomePage = () => {
 	         	</ScrollView>
 	        </View>
 	      </View>
-	      )}
       </View>
     )
   }
@@ -85,12 +84,14 @@ const HomePage = () => {
 	return (
 		<SafeAreaView style={{ flex: 1 }}>
 	    <FocusedStatusBar />
-	    <FlatList
-	    	style={styles.flatlist}
-	    	data={carousels}
-	    	keyExtractor={(item, index) => index}
-	    	renderItem={renderItem}
-	    />
+	    {isLoading ? <Text style={{color: '#E4E6EB'}}>Loading...</Text> : (
+		    <FlatList
+		    	style={styles.flatlist}
+		    	data={carousels}
+		    	keyExtractor={(item, index) => index}
+		    	renderItem={renderItem}
+		    />
+	    )}
 		</SafeAreaView>
 	);
 }
