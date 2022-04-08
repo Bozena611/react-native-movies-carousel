@@ -1,6 +1,8 @@
 import React from "react";
 import { StyleSheet, View, Image, Text, TouchableOpacity } from "react-native";
 
+/* Display details for the chosen movie */
+
 const MovieDetails = ({ name, year, duration, poster, director, actors, plot, navigation, route }) => {
 	return (
 		<View style={{ flex: 1 }}>

@@ -80,7 +80,6 @@ const HomePage = () => {
     )
   }
 
-
 	return (
 		<SafeAreaView style={{ flex: 1 }}>
 	    <FocusedStatusBar />
@@ -96,15 +95,7 @@ const HomePage = () => {
 	);
 }
 
-
 const styles = StyleSheet.create({
- /* container: {
-    flex: 1,
-    flexDirection: "column",
-    alignItems: 'center',
-    justifyContent: 'space-evenly',
-  },
-  */
   flatlist: {
   	flex: 1,
   	paddingTop: 10,
@@ -116,7 +107,5 @@ const styles = StyleSheet.create({
   	padding: 5,
   }
 });
-
-
 
 export default HomePage;
