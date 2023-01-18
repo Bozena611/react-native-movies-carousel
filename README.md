@@ -37,7 +37,3 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 
-# Notes
-
-### I have never worked with TypeScript so I didn't want to experiment with it for this task.
-
