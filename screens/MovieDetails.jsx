@@ -3,7 +3,7 @@ import { StyleSheet, View, Image, Text, TouchableOpacity } from "react-native";
 
 /* Display details for the chosen movie */
 
-const MovieDetails = ({ name, year, duration, poster, director, actors, plot, navigation, route }) => {
+const MovieDetails = ({ title, year, duration, poster, director, actors, plot, navigation, route }) => {
 	return (
 		<View style={{ flex: 1 }}>
 			<TouchableOpacity>
@@ -14,7 +14,7 @@ const MovieDetails = ({ name, year, duration, poster, director, actors, plot, na
 			</TouchableOpacity>
 			<View style={styles.container}>
 				<Text style={{ color: '#E4E6EB', margin: 5, fontSize: 20, fontWeight: 'bold', textAlign: 'center' }}>
-					{route.params.name}
+					{route.params.title}
 				</Text>
 				<View style={{ flexDirection: "row", alignSelf: 'flex-start'}}>
 					<Text style={styles.yearMins}>

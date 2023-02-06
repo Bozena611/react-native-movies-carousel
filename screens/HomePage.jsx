@@ -13,11 +13,11 @@ const HomePage = () => {
 /* Fetch data from source and store it in state*/
 
   useEffect(()=> {
-    fetch(`https://raw.githubusercontent.com/24i/smartapps-test/main/data.json`)
+    fetch(`https://bozena611.github.io/data/movie_data.json`)
       .then((res) => res.json())
       .then(
         (data) => {
-          setCarousels(data.carousels);
+          setCarousels(data);
         }
       )
       .catch((error) => console.error(error))
@@ -27,18 +27,18 @@ const HomePage = () => {
   const renderItem = ({item}) => {
     let movies = [];
 
-    if (item.items) {
-      movies = item.items.map((row, i) => {
-      	let name = row.title;
+    if (item.movies) {
+      movies = item.movies.map((row, i) => {
+      	let title = row.title;
       	let year = row.year;
-      	let duration = row.duration;
+      	let duration = row.runtime;
       	let poster = row.posterUrl;
       	let director = row.director;
       	let actors = row.actors;
       	let plot = row.plot;
 
         return (
-        	<TouchableOpacity key={i} style={{ flex: 1 }} onPress={() => navigation.navigate("MovieDetails", { name, year, duration, poster, director, actors, plot })}>
+        	<TouchableOpacity key={i} style={{ flex: 1 }} onPress={() => navigation.navigate("MovieDetails", { title, year, duration, poster, director, actors, plot })}>
           	<View styles={{ width: '70%', height: 'auto' }}>
           		<View>
 	          		<Image
@@ -64,7 +64,7 @@ const HomePage = () => {
       <View style={{ flex: 1, justifyContent: "space-evenly" }}>
       	<View>
           <Text style={{ color: '#58A6FF', fontWeight: 'bold', padding: 20, fontSize: 20}}>
-            {item.title}
+            {item.name}
           </Text>
           <View style={{ flex: 1 }}>
 	          <ScrollView
