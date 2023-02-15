@@ -11,7 +11,7 @@
 1. Clone the GitHub repo to your PC
 2. Open project folder in terminal and run `npm install`
 3. Launch the server using `npm start`
-4. Scan the QR code with Expo Go or Camera app (iOS) to open on mobile phone, or open http://localhost:19002 on your PC and click "Run in web browser" option above the QR code to explore in the Web Browser.
+4. Scan the QR code with Expo Go or Camera app (iOS) to open on mobile phone, or follow instructions in the terminal to open web version on your PC (type w in the terminal) and the page will open automatically in your Web Browser.
 
 
 <p>&nbsp;</p>
